@@ -7,7 +7,7 @@ setup(
     author = 'Magnun Leno',
     author_email = 'magnun.leno@gmail.com',
     description = 'This plugins adds a feed generator and feed writer for your podcast.',
-    packages = find_packages(),
+    packages = '.',
     install_requires = [
         'six',
         'pelican',
