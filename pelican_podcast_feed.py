@@ -237,9 +237,7 @@ class iTunesWriter(Writer):
         else:
             items['itunes:summary'] = Markup(item.summary).striptags()
 
-        items['description'] = "<![CDATA[{}]]>".format(
-            Markup(item.summary)
-            )
+        items['description'] = Markup(item.summary).striptags()
 
         rich_content = Markup("<![CDATA[{}]]>").format(Markup(item.content))
         items['content:encoded'] = rich_content
