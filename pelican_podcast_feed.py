@@ -240,7 +240,8 @@ class iTunesWriter(Writer):
 
         # Hack: Spotify treats line feeds (LF) as HTML line breaks (<br>)
         # Minify rendered content to avoid this.
-        content = Markup(htmlmin.minify(item.content))
+        content = Markup(htmlmin.minify(item.content),
+                         remove_optional_attribute_quotes=False)
         items['content:encoded'] = Markup("<![CDATA[{}]]>").format(content)
         items['description'] = items['content:encoded']
 
