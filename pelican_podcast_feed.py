@@ -244,6 +244,7 @@ class iTunesWriter(Writer):
                                         remove_optional_attribute_quotes=False)
                          )
         items['content:encoded'] = Markup("<![CDATA[{}]]>").format(content)
+        items['description'] = items['content:encoded']
 
         # Date the article was last modified.
         #  ex: <pubDate>Fri, 13 Jun 2014 04:59:00 -0300</pubDate>
