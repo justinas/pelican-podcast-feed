@@ -7,7 +7,7 @@ iTunes Feed Generator for Pelican.
 
 from __future__ import unicode_literals
 
-
+import htmlmin
 import six
 from jinja2 import Markup
 from pelican import signals
@@ -240,8 +240,10 @@ class iTunesWriter(Writer):
 
         items['description'] = Markup(item.summary).striptags()
 
-        rich_content = Markup("<![CDATA[{}]]>").format(Markup(item.content))
-        items['content:encoded'] = rich_content
+        # Hack: Spotify treats line feeds (LF) as HTML line breaks (<br>)
+        # Minify rendered content to avoid this.
+        content = Markup(htmlmin.minify(item.content))
+        items['content:encoded'] = Markup("<![CDATA[{}]]>").format(content)
 
         # Date the article was last modified.
         #  ex: <pubDate>Fri, 13 Jun 2014 04:59:00 -0300</pubDate>
