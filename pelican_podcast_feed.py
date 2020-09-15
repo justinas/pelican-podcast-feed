@@ -27,6 +27,7 @@ ITEM_ELEMENTS = (
     'itunes:image',
     'enclosure',
     'description',
+    'content:encoded',
     'link',
     'guid',
     'pubDate',
@@ -239,6 +240,9 @@ class iTunesWriter(Writer):
         items['description'] = "<![CDATA[{}]]>".format(
             Markup(item.summary)
             )
+
+        rich_content = Markup("<![CDATA[{}]]>").format(Markup(item.content))
+        items['content:encoded'] = rich_content
 
         # Date the article was last modified.
         #  ex: <pubDate>Fri, 13 Jun 2014 04:59:00 -0300</pubDate>
