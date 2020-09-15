@@ -238,12 +238,11 @@ class iTunesWriter(Writer):
         else:
             items['itunes:summary'] = Markup(item.summary).striptags()
 
-        items['description'] = Markup(item.summary).striptags()
-
         # Hack: Spotify treats line feeds (LF) as HTML line breaks (<br>)
         # Minify rendered content to avoid this.
         content = Markup(htmlmin.minify(item.content))
         items['content:encoded'] = Markup("<![CDATA[{}]]>").format(content)
+        items['description'] = items['content:encoded']
 
         # Date the article was last modified.
         #  ex: <pubDate>Fri, 13 Jun 2014 04:59:00 -0300</pubDate>
