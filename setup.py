@@ -13,6 +13,6 @@ setup(
         'pelican',
         'jinja2',
         'feedgenerator',
-        'htmlmin',
+        'htmlminf==0.1.13',
     ],
 )
