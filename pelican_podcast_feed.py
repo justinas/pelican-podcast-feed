@@ -9,7 +9,7 @@ from __future__ import unicode_literals
 
 import htmlmin
 import six
-from jinja2 import Markup
+from markupsafe import Markup
 from pelican import signals
 from pelican.writers import Writer
 from pelican.generators import Generator
